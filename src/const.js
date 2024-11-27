@@ -1,6 +1,6 @@
-const EVENT_TYPE = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
+const TYPE_EVENTS = ['taxi', 'bus', 'train', 'ship', 'drive', 'flight', 'check-in', 'sightseeing', 'restaurant'];
 const POINTS_COUNT = 3;
-const TYPE_SORT = ['day', 'event', 'time', 'price', 'offers'];
+const TYPE_SORTS = ['day', 'event', 'time', 'price', 'offers'];
 
 const FilterType = {
   EVERYTHING: 'everything',
@@ -30,4 +30,4 @@ const UpdateType = {
   INIT: 'INIT',
 };
 
-export {EVENT_TYPE, POINTS_COUNT, FilterType, SortType, TYPE_SORT, UserAction, UpdateType};
+export {TYPE_EVENTS, POINTS_COUNT, FilterType, SortType, TYPE_SORTS, UserAction, UpdateType};
