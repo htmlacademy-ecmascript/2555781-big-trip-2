@@ -17,23 +17,33 @@ export default class TripInfoPresenter {
   }
 
   init() {
+
     const prevTripInfoComponent = this.#tripInfoComponent;
     const points = this.#pointsModel.points;
     const destinations = this.#pointsModel.destinations;
     const offers = this.#pointsModel.offers;
 
-    this.#tripInfoComponent = new TripMainInfoView({
-      points,
-      destinations,
-      offers
-    });
+    if (points.length !== 0) {
+      this.#tripInfoComponent = new TripMainInfoView({
+        points,
+        destinations,
+        offers
+      });
+    }
 
     if (prevTripInfoComponent === null) {
-      render(this.#tripInfoComponent, this.#tripInfoContainerElement, RenderPosition.AFTERBEGIN);
+      if (points.length !== 0) {
+        render(this.#tripInfoComponent, this.#tripInfoContainerElement, RenderPosition.AFTERBEGIN);
+      }
       return;
     }
 
-    replace(this.#tripInfoComponent, prevTripInfoComponent);
+    if (points.length === 0) {
+      remove(this.#tripInfoComponent);
+      this.#tripInfoComponent = null;
+    } else {
+      replace(this.#tripInfoComponent, prevTripInfoComponent);
+    }
     remove(prevTripInfoComponent);
   }
 

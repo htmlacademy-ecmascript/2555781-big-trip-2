@@ -1,16 +1,13 @@
 import {remove, render, RenderPosition} from '../framework/render.js';
 import {UserAction, UpdateType} from '../const.js';
 import PointEditView from '../view/point-edit-view.js';
-
 export default class NewPointPresenter {
   #pointListContainer = null;
   #handleDataChange = null;
   #handleDestroy = null;
   #offers = null;
   #destinations = null;
-
   #noPointComponent = null;
-
   #pointEditComponent = null;
 
   constructor({pointListContainer, onDataChange, onDestroy, noPointComponent}) {
@@ -80,11 +77,13 @@ export default class NewPointPresenter {
 
   setAborting() {
     const resetFormState = () => {
-      this.#pointEditComponent.updateElement({
-        isDisabled: false,
-        isSaving: false,
-        isDeleting: false,
-      });
+      if (this.#pointEditComponent !== null) {
+        this.#pointEditComponent.updateElement({
+          isDisabled: false,
+          isSaving: false,
+          isDeleting: false,
+        });
+      }
     };
 
     this.#pointEditComponent.shake(resetFormState);
